@@ -38,91 +38,66 @@
         </div>
 
         <!-- CREATE CONTENT -->
-   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- CREATE CONTENT -->
+        <form method="POST" action="{{ route('smm.tasks.store', $project) }}">
+            @csrf
 
-    <!-- Post Title -->
-    <div>
-        <label class="block text-sm font-medium text-purple-600 mb-1">
-            Post Title
-        </label>
-        <input
-            name="title"
-            required
-            placeholder="Example: Poster Teaser 1"
-            class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300"
-            @disabled(!$calendarEditable)>
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <!-- Platform -->
-    <div>
-        <label class="block text-sm font-medium text-purple-600 mb-1">
-            Platform
-        </label>
-        <select
-            name="platform"
-            required
-            class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300"
-            @disabled(!$calendarEditable)>
-            <option value="">Select Platform</option>
-            <option>Facebook</option>
-            <option>Instagram</option>
-            <option>TikTok</option>
-        </select>
-    </div>
+                <input name="title" placeholder="Post Title" required class="border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300" @disabled(!$calendarEditable)>
 
-    <!-- Scheduled Posting Date -->
-    <div>
-        <label class="block text-sm font-medium text-purple-600 mb-1">
-            Scheduled Posting Date
-        </label>
-        <input
-            type="datetime-local"
-            name="scheduled_at"
-            required
-            class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300"
-            @disabled(!$calendarEditable)>
-    </div>
+                <select name="platform" required class="border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300" @disabled(!$calendarEditable)>
+                    <option value="">Select Platform</option>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>TikTok</option>
+                </select>
 
-    <!-- Creative Production Deadline -->
-    <div>
-        <label class="block text-sm font-medium text-purple-600 mb-1">
-            Creative Production Deadline
-        </label>
-        <input
-            type="datetime-local"
-            name="due_at"
-            required
-            class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300"
-            @disabled(!$calendarEditable)>
-    </div>
+            </div>
 
-    <!-- Caption -->
-    <div class="md:col-span-2">
-        <label class="block text-sm font-medium text-purple-600 mb-1">
-            Caption / Content Details
-        </label>
-        <textarea
-            name="description"
-            placeholder="Write the caption or content description..."
-            class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300"
-            @disabled(!$calendarEditable)></textarea>
-    </div>
+            <!-- Scheduled Posting Date -->
+            <div>
+                <label class="block text-sm font-medium text-purple-600 mb-1">
+                    Scheduled Posting Date
+                </label>
 
-    <!-- Inspiration -->
-    <div class="md:col-span-2">
-        <label class="block text-sm font-medium text-purple-600 mb-1">
-            Inspiration / Peg Link (Optional)
-        </label>
-        <input
-            type="url"
-            name="inspo_link"
-            placeholder="Paste reference link here"
-            class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300"
-            @disabled(!$calendarEditable)>
-    </div>
+                <input type="datetime-local" name="scheduled_at" required class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300" @disabled(!$calendarEditable)>
+            </div>
 
-</div>
+            <!-- Creative Production Deadline -->
+            <div>
+                <label class="block text-sm font-medium text-purple-600 mb-1">
+                    Creative Production Deadline
+                </label>
 
+                <input type="datetime-local" name="due_at" required class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300" @disabled(!$calendarEditable)>
+            </div>
+
+            <!-- Caption -->
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-purple-600 mb-1">
+                    Caption / Content Details
+                </label>
+
+                <textarea name="description" placeholder="Write the caption or content description..." class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300" @disabled(!$calendarEditable)></textarea>
+            </div>
+
+            <!-- Inspiration -->
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-purple-600 mb-1">
+                    Inspiration / Peg Link (Optional)
+                </label>
+
+                <input type="url" name="inspo_link" placeholder="Paste reference link here" class="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-purple-300" @disabled(!$calendarEditable)>
+            </div>
+
+            <div class="mt-6">
+                <button type="submit" class="px-6 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition disabled:opacity-50" @disabled(!$calendarEditable)>
+                    Add to Calendar
+                </button>
+            </div>
+
+        </form>
         <!-- SCHEDULED CONTENT -->
         <div class="bg-white rounded-3xl shadow-sm border border-purple-100 p-8">
 
@@ -204,6 +179,13 @@
                                             Reject → Return to Creative
                                         </button>
                                     </form>
+
+                                    <div class="mt-8">
+                                        <button class="px-6 py-3 bg-purple-100 text-purple-700 rounded-xl hover:bg-purple-200 transition disabled:opacity-50" @disabled(!$calendarEditable)>
+                                            Add to Calendar
+                                        </button>
+                                    </div>
+
 
                                 </div>
 
